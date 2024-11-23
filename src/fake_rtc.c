@@ -10,7 +10,7 @@ void FakeRtc_Reset(void)
 {
 #if OW_USE_FAKE_RTC
     memset(&gSaveBlock3Ptr->fakeRTC, 0, sizeof(gSaveBlock3Ptr->fakeRTC));
-    gSaveBlock3Ptr->fakeRTC.month = MONTH_JAN;
+    gSaveBlock3Ptr->fakeRTC.month = MONTH_DEC;
     gSaveBlock3Ptr->fakeRTC.day = 1;
     gSaveBlock3Ptr->fakeRTC.dayOfWeek = WEEKDAY_SAT;
 #endif

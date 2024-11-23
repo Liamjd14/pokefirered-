@@ -119,7 +119,7 @@ static void BuyQuantityAddScrollIndicatorArrows(void);
 static void BuyMenuRemoveScrollIndicatorArrows(void);
 static void BuyMenuDrawMapView(void);
 static void BuyMenuDrawMapBg(void);
-static void BuyMenuDrawMapMetatile(s16 x, s16 y, const u16 *src, u8 metatileLayerType);
+static void BuyMenuDrawMapMetatile(s16 x, s16 y, const u16 *src);
 static void BuyMenuDrawMapMetatileLayer(u16 *dest, s16 offset1, s16 offset2, const u16 *src);
 static void BuyMenuCollectObjectEventData(void);
 static void BuyMenuDrawObjectEvents(void);
@@ -914,7 +914,7 @@ static void BuyMenuDrawMapBg(void)
     s16 i, j, x, y;
     const struct MapLayout *mapLayout;
     u16 metatile;
-    u8 metatileLayerType;
+
 
     mapLayout = gMapHeader.mapLayout;
     GetXYCoordsOneStepInFrontOfPlayer(&x, &y);
@@ -926,36 +926,25 @@ static void BuyMenuDrawMapBg(void)
         for (i = 0; i < 5; i++)
         {
             metatile = MapGridGetMetatileIdAt(x + i, y + j);
-            metatileLayerType = MapGridGetMetatileLayerTypeAt(x + i, y + j);
+            //metatileLayerType = MapGridGetMetatileLayerTypeAt(x + i, y + j);
 
             if (metatile < NUM_METATILES_IN_PRIMARY)
-                BuyMenuDrawMapMetatile(i, j, GetPrimaryTileset(mapLayout)->metatiles + metatile * 8, metatileLayerType);
+                BuyMenuDrawMapMetatile(i, j, (u16*)mapLayout->primaryTileset->metatiles + metatile * NUM_TILES_PER_METATILE);
             else
-                BuyMenuDrawMapMetatile(i, j, GetSecondaryTileset(mapLayout)->metatiles + ((metatile - NUM_METATILES_IN_PRIMARY) * 8), metatileLayerType);
+                BuyMenuDrawMapMetatile(i, j, (u16*)mapLayout->secondaryTileset->metatiles + ((metatile - NUM_METATILES_IN_PRIMARY) * NUM_TILES_PER_METATILE));
         }
     }
 }
 
-static void BuyMenuDrawMapMetatile(s16 x, s16 y, const u16 *src, u8 metatileLayerType)
+static void BuyMenuDrawMapMetatile(s16 x, s16 y, const u16 *src)
 {
     u16 offset1 = x * 2;
     u16 offset2 = y * 64 + 64;
 
-    switch (metatileLayerType)
-    {
-    case METATILE_LAYER_TYPE_NORMAL:
-        BuyMenuDrawMapMetatileLayer(*gShopTilemapBuffer4, offset1, offset2, src);
-        BuyMenuDrawMapMetatileLayer(*gShopTilemapBuffer2, offset1, offset2, src + 4);
-        break;
-    case METATILE_LAYER_TYPE_COVERED:
-        BuyMenuDrawMapMetatileLayer(*gShopTilemapBuffer3, offset1, offset2, src);
-        BuyMenuDrawMapMetatileLayer(*gShopTilemapBuffer4, offset1, offset2, src + 4);
-        break;
-    case METATILE_LAYER_TYPE_SPLIT:
-        BuyMenuDrawMapMetatileLayer(*gShopTilemapBuffer3, offset1, offset2, src);
-        BuyMenuDrawMapMetatileLayer(*gShopTilemapBuffer2, offset1, offset2, src + 4);
-        break;
-    }
+
+	BuyMenuDrawMapMetatileLayer(*gShopTilemapBuffer3, offset1, offset2, src);
+	BuyMenuDrawMapMetatileLayer(*gShopTilemapBuffer4, offset1, offset2, src + 4);
+	BuyMenuDrawMapMetatileLayer(*gShopTilemapBuffer2, offset1, offset2, src + 8);
 }
 
 static void BuyMenuDrawMapMetatileLayer(u16 *dest, s16 offset1, s16 offset2, const u16 *src)

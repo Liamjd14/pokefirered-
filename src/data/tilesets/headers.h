@@ -1076,3 +1076,14 @@ const struct Tileset gTileset_IndigoPlateauWinter =
     .metatileAttributes = gMetatileAttributes_IndigoPlateauWinter,
     .callback = NULL,
 };
+
+const struct Tileset gTileset_Oceanview =
+{
+    .isCompressed = TRUE,
+    .isSecondary = TRUE,
+    .tiles = gTilesetTiles_Oceanview,
+    .palettes = gTilesetPalettes_Oceanview,
+    .metatiles = gMetatiles_Oceanview,
+    .metatileAttributes = gMetatileAttributes_Oceanview,
+    .callback = NULL,
+};

@@ -291,3 +291,6 @@ const u32 gMetatileAttributes_IndigoPlateauAutumn[] = INCBIN_U32("data/tilesets/
 
 const u16 gMetatiles_IndigoPlateauWinter[] = INCBIN_U16("data/tilesets/secondary/indigo_plateau_winter/metatiles.bin");
 const u32 gMetatileAttributes_IndigoPlateauWinter[] = INCBIN_U32("data/tilesets/secondary/indigo_plateau_winter/metatile_attributes.bin");
+
+const u16 gMetatiles_Oceanview[] = INCBIN_U16("data/tilesets/secondary/oceanview/metatiles.bin");
+const u32 gMetatileAttributes_Oceanview[] = INCBIN_U32("data/tilesets/secondary/oceanview/metatile_attributes.bin");

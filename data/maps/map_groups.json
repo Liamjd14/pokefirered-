@@ -1,5 +1,9 @@
 {
   "group_order": [
+    "gMapGroup_TownsAndCities",
+    "gMapGroup_Routes",
+    "gMapGroup_Caves",
+    "gMapGroup_Ints",
     "gMapGroup_Link",
     "gMapGroup_Dungeons",
     "gMapGroup_SpecialArea",
@@ -43,6 +47,19 @@
     "gMapGroup_IndoorTwoIslandRoute",
     "gMapGroup_IndoorSixIslandRoute",
     "gMapGroup_IndoorSevenIslandRoute"
+  ],
+  "gMapGroup_TownsAndCities": [
+    "Oceanview",
+    "ProfessorsLab"
+  ],
+  "gMapGroup_Routes": [
+    "OceanviewWalk"
+  ],
+  "gMapGroup_Caves": [
+
+  ],
+  "gMapGroup_Ints": [
+
   ],
   "gMapGroup_Link": [
     "BattleColosseum_2P",
